@@ -11,6 +11,21 @@ async function getItemsByCategoryId(category_id) {
   return rows;
 };
 
+async function getItemById(item_id) {
+  const {rows}  = await pool.query(`
+    SELECT * from items where id = $1;
+  `, [item_id]);
+  if (rows.length > 1) { throw new Error(`${rows.length} names (expected 1)`)};
+  return rows[0];
+}
+
+async function updateItemById(item_id, item_name, item_qty, category_id) {
+  await pool.query(`UPDATE items
+    SET item_name = $1, item_qty = $2, category_id = $3
+    WHERE id = $4`, [item_name, item_qty, category_id, item_id]
+  );
+}
+
 async function getCategoryNameFromId(category_id) {
   const {rows}  = await pool.query(`
     SELECT category_name from categories where id = $1;
@@ -22,5 +37,7 @@ async function getCategoryNameFromId(category_id) {
 module.exports = {
   getCategories,
   getItemsByCategoryId,
+  getItemById,
+  updateItemById,
   getCategoryNameFromId
 }

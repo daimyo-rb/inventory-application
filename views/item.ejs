@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Item</title>
+</head>
+<body>
+  <h1>Update item info:</h1>
+  <form action="/item/<%= item.id %>/update" method="POST">
+    <label for="item_name" >Item name: </label>
+    <input name="item_name" id="item_name" value="<%= item.item_name %>">
+    <br>
+    <label for="item_qty" >Quantity: </label>
+    <input type="number" name="item_qty" id="item_qty" value="<%= item.item_qty %>">
+    <br>
+    <label for="item_category" >Category: </label>
+    <input name="item_category" id="item_category" value="<%= item.category_id %>">
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
