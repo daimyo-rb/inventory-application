@@ -13,6 +13,10 @@
         <%= category.category_name %>
         <a href="/category/<%= category.id %>">View items</a>
         <a href="/category/<%= category.id %>/update"><button>Update Category</button></a>
+        <a href="/category/<%= category.id %>/delete"
+          onclick="return confirm('are you sure you want to delete?')">
+          <button>Delete</button>
+        </a>
       </li>
     <% }); %>
   </ul>

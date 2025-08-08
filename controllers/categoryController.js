@@ -29,10 +29,20 @@ async function postNewCategory(req, res) {
   res.redirect('/');
 }
 
+async function deleteCategory(req, res) {
+  const category_id = req.params.category_id;
+  await Promise.all([
+    db.deleteCategoryById(category_id),
+    db.deleteItemsByCategoryId(category_id)
+  ]);
+  res.redirect('/');
+}
+
 module.exports = {
   getCategory,
   getNewCategory,
   postNewCategory,
   getCategoryUpdate,
-  postCategoryUpdate
+  postCategoryUpdate,
+  deleteCategory
 }

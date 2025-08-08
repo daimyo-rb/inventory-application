@@ -35,6 +35,10 @@ async function deleteItemById(item_id) {
   await pool.query(`DELETE FROM items WHERE id = $1`, [item_id]);
 }
 
+async function deleteItemsByCategoryId(category_id) {
+  await pool.query(`DELETE FROM items WHERE category_id = $1`, [category_id]);
+}
+
 async function getCategoryById(category_id) {
   const {rows}  = await pool.query(`
     SELECT * from categories where id = $1;
@@ -54,6 +58,10 @@ async function updateCategoryById(category_name, category_id) {
   );
 }
 
+async function deleteCategoryById(category_id) {
+  await pool.query(`DELETE FROM categories WHERE id = $1`, [category_id]);
+}
+
 module.exports = {
   getCategories,
   getItemsByCategoryId,
@@ -62,6 +70,8 @@ module.exports = {
   updateItemById,
   getCategoryById,
   deleteItemById,
+  deleteItemsByCategoryId,
   createNewCategory,
-  updateCategoryById
+  updateCategoryById,
+  deleteCategoryById
 }
