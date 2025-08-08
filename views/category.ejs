@@ -13,7 +13,10 @@
         Item: <%= item.item_name %>
         Qty: <%= item.item_qty %>
         <a href="/item/<%= item.id %>"><button>Edit Quantity</button></a>
-        <a><button>Delete</button></a>
+        <a href="/item/<%= item.id %>/delete"
+          onclick="return confirm('are you sure you want to delete?')")>
+          <button>Delete</button>
+        </a>
       </li>
     <% }); %>
   </ul>

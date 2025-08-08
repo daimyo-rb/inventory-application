@@ -22,9 +22,15 @@ async function postNewItem(req, res) {
   res.redirect('/');
 }
 
+async function deleteItem(req, res) {
+  await db.deleteItemById(req.params.id);
+  res.redirect('/');
+}
+
 module.exports = {
   getItemUpdate,
   postItemUpdate,
   getNewItem,
-  postNewItem
+  postNewItem,
+  deleteItem
 }
