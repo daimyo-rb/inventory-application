@@ -35,7 +35,7 @@ async function deleteItemById(item_id) {
   await pool.query(`DELETE FROM items WHERE id = $1`, [item_id]);
 }
 
-async function getCategoryFromId(category_id) {
+async function getCategoryById(category_id) {
   const {rows}  = await pool.query(`
     SELECT * from categories where id = $1;
   `, [category_id]);
@@ -48,13 +48,20 @@ async function createNewCategory(category_name) {
     VALUES ($1);`, [category_name]);
 }
 
+async function updateCategoryById(category_name, category_id) {
+  await pool.query(`UPDATE categories SET category_name = $1 WHERE id = $2`,
+    [category_name, category_id]
+  );
+}
+
 module.exports = {
   getCategories,
   getItemsByCategoryId,
   getItemById,
   createNewItem,
   updateItemById,
-  getCategoryFromId,
+  getCategoryById,
   deleteItemById,
-  createNewCategory
+  createNewCategory,
+  updateCategoryById
 }
