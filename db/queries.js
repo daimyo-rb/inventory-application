@@ -11,7 +11,16 @@ async function getItemsByCategoryId(category_id) {
   return rows;
 };
 
+async function getCategoryNameFromId(category_id) {
+  const {rows}  = await pool.query(`
+    SELECT category_name from categories where id = $1;
+  `, [category_id]);
+  if (rows.length > 1) { throw new Error(`${rows.length} names (expected 1)`)};
+  return rows[0].category_name;
+}
+
 module.exports = {
   getCategories,
-  getItemsByCategoryId
+  getItemsByCategoryId,
+  getCategoryNameFromId
 }
