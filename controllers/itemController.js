@@ -12,7 +12,19 @@ async function postItemUpdate(req, res) {
   res.redirect('/');
 }
 
+function getNewItem(req, res) {
+  const category_id = req.query.category_id;
+  res.render('newItem', {category_id: category_id});
+}
+
+async function postNewItem(req, res) {
+  await db.createNewItem(req.body.item_name, req.body.item_qty, req.body.category_id);
+  res.redirect('/');
+}
+
 module.exports = {
   getItemUpdate,
-  postItemUpdate
+  postItemUpdate,
+  getNewItem,
+  postNewItem
 }

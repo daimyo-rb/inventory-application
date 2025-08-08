@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create new item</title>
+</head>
+<body>
+  <h1>Create new item: </h1>
+  <form action="/item/new" method="POST">
+    <label for="item_name" >Item name: </label>
+    <input name="item_name" id="item_name">
+    <br>
+    <label for="item_qty" >Quantity: </label>
+    <input type="number" name="item_qty" id="item_qty">
+    <br>
+    <input type="hidden" name="category_id" value="<%= category_id %>">
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

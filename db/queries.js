@@ -19,6 +19,11 @@ async function getItemById(item_id) {
   return rows[0];
 }
 
+async function createNewItem(item_name, item_qty, category_id) {
+  await pool.query(`INSERT INTO items (item_name, item_qty, category_id)
+    VALUES ($1, $2, $3);`, [item_name, item_qty, category_id]);
+}
+
 async function updateItemById(item_id, item_name, item_qty, category_id) {
   await pool.query(`UPDATE items
     SET item_name = $1, item_qty = $2, category_id = $3
@@ -26,18 +31,19 @@ async function updateItemById(item_id, item_name, item_qty, category_id) {
   );
 }
 
-async function getCategoryNameFromId(category_id) {
+async function getCategoryFromId(category_id) {
   const {rows}  = await pool.query(`
-    SELECT category_name from categories where id = $1;
+    SELECT * from categories where id = $1;
   `, [category_id]);
   if (rows.length > 1) { throw new Error(`${rows.length} names (expected 1)`)};
-  return rows[0].category_name;
+  return rows[0];
 }
 
 module.exports = {
   getCategories,
   getItemsByCategoryId,
   getItemById,
+  createNewItem,
   updateItemById,
-  getCategoryNameFromId
+  getCategoryFromId
 }

@@ -6,7 +6,7 @@
   <title>Category</title>
 </head>
 <body>
-  <h1><%= category_name %>:</h1>
+  <h1><%= category.category_name %>:</h1>
   <ul>
     <% items.forEach((item) => { %>
       <li>
@@ -17,6 +17,8 @@
       </li>
     <% }); %>
   </ul>
+  <a href="/item/new?category_id=<%= category.id %>"><button>New Item</button></a>
+  <br>
   <a href="/">Home</a>
 </body>
 </html>
