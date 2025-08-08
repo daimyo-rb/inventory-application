@@ -16,11 +16,24 @@ CREATE TABLE IF NOT EXISTS items (
 );
 
 INSERT INTO categories (category_name)
-VALUES ('produce'), ('electronics');
+  SELECT * FROM (
+  VALUES
+    ('produce'), ('electronics')
+  ) as v(category_name)
+  WHERE NOT EXISTS (
+  SELECT 1  FROM categories
+);
 
 INSERT INTO items (item_name, item_qty, category_id)
-VALUES ('apple', 5, 1), ('banana', 9, 1), ('57 inch tv', 7, 2), ('switch 2', 5, 2);
- `;
+  SELECT * FROM (
+  VALUES
+     ('apple', 5, 1), ('banana', 9, 1),
+     ('57 inch tv', 7, 2), ('switch 2', 5, 2)
+  ) as v(item_name, item_qty, category_id)
+  WHERE NOT EXISTS (
+  SELECT 1 FROM items
+);
+`;
 
 async function main() {
   console.log("seeding...");
