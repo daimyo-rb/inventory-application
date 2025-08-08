@@ -7,6 +7,7 @@
 </head>
 <body>
   <h1>Create new category: </h1>
+  <%- include("partials/errors.ejs") %>
   <form action="/category/new" method="POST">
     <label for="category_name" >Category name: </label>
     <input name="category_name" id="category_name">

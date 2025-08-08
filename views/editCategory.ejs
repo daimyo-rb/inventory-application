@@ -7,6 +7,7 @@
 </head>
 <body>
   <h1>Update Category Info:</h1>
+  <%- include("partials/errors.ejs") %>
   <form action="/category/<%= category.id %>/update" method="POST">
     <label for="category_name" >Item name: </label>
     <input name="category_name" id="category_name" value="<%= category.category_name %>">
