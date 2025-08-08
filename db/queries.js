@@ -43,6 +43,11 @@ async function getCategoryFromId(category_id) {
   return rows[0];
 }
 
+async function createNewCategory(category_name) {
+  await pool.query(`INSERT INTO categories (category_name)
+    VALUES ($1);`, [category_name]);
+}
+
 module.exports = {
   getCategories,
   getItemsByCategoryId,
@@ -50,5 +55,6 @@ module.exports = {
   createNewItem,
   updateItemById,
   getCategoryFromId,
-  deleteItemById
+  deleteItemById,
+  createNewCategory
 }

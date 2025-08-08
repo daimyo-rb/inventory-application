@@ -8,6 +8,17 @@ async function getCategory(req, res) {
   res.render('category', {category: category, items: rows});
 }
 
+function getNewCategory(req, res) {
+  res.render('newCategory');
+}
+
+async function postNewCategory(req, res) {
+  await db.createNewCategory(req.body.category_name);
+  res.redirect('/');
+}
+
 module.exports = {
-  getCategory
+  getCategory,
+  getNewCategory,
+  postNewCategory
 }
