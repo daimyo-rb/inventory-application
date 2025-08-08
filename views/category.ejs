@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inventory Application</title>
+  <title>Category</title>
 </head>
 <body>
-  <h1>Categories:</h1>
+  <h1>Category</h1>
   <ul>
-    <% categories.forEach((category)=> { %>
+    <% items.forEach((item) => { %>
       <li>
-        <%= category.category_name %>
-        <a href="/category/<%= category.id %>">View items</a>
+        Item: <%= item.item_name %>
+        Qty: <%= item.item_qty %>
       </li>
     <% }); %>
   </ul>
+  <a href="/">Home</a>
 </body>
 </html>

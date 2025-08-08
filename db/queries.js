@@ -5,6 +5,13 @@ async function getCategories() {
   return rows;
 };
 
+async function getItemsByCategoryId(category_id) {
+  const { rows } = await pool.query('SELECT * FROM items WHERE category_id = $1;', [category_id]);
+  console.log(rows);
+  return rows;
+};
+
 module.exports = {
-  getCategories
+  getCategories,
+  getItemsByCategoryId
 }
